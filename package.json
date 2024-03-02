@@ -48,5 +48,9 @@
     "eslint": "^8.57.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "vite-plugin-eslint": "^1.8.1"
+  },
+  "dependencies": {
+    "@types/pangu": "^4.0.2",
+    "pangu": "^4.0.7"
   }
 }
