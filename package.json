@@ -36,5 +36,10 @@
         "file": "LLPangu.zip"
       }
     }
+  },
+  "devDependencies": {
+    "cross-spawn": "^7.0.3",
+    "electron": "^29.1.0",
+    "electron-vite": "^2.0.0"
   }
 }
