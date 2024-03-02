@@ -1,0 +1,40 @@
+{
+  "name": "llpangu",
+  "version": "1.0.0",
+  "description": "· 盘古 | 开天辟地 ·",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "MisaLiu",
+    "email": "misaliu@misaliu.top",
+    "url": "https://github.com/MisaLiu/LiteLoaderQQNT-Pangu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MisaLiu/LiteLoaderQQNT-Pangu.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "liteloader_manifest": {
+    "type": "extension",
+    "name": "Pangu",
+    "slug": "LLPangu",
+    "icon": null,
+    "platform": [
+      "win32",
+      "linux",
+      "darwin"
+    ],
+    "injects": {
+      "main": "./main.js"
+    },
+    "repository": {
+      "repo": "MisaLiu/LiteLoaderQQNT-Pangu",
+      "branch": "master",
+      "release": {
+        "file": "LLPangu.zip"
+      }
+    }
+  }
+}
