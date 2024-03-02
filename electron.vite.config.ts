@@ -1,5 +1,6 @@
 import { defineConfig } from 'electron-vite';
 import { defineConfig as defineViteConfig } from 'vite';
+import createEslintPlugin from 'vite-plugin-eslint';
 import { resolve } from 'path';
 
 export default defineConfig({
@@ -9,6 +10,9 @@ export default defineConfig({
         '@': resolve(__dirname, './src'),
       }
     },
+    plugins: [
+      createEslintPlugin(),
+    ],
     build: {
       outDir: resolve(__dirname, './dist'),
       minify: 'esbuild',
