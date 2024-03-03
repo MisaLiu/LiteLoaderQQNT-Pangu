@@ -21,22 +21,28 @@ export function hookQQNTApiCall(window: BrowserWindow) {
 
   const ipcUpMsgProxy = new Proxy(ipcUpMsg, {
     apply(target, thisArg, args: IQQNTApiPost) {
-      const [ postHead, [ postCommand, ...postPayload ] ] = args[3];
-      const newArgs = args;
-
-      if (!!postPayload && postPayload.length > 0) {
-        for (const hook of HookApiPreProcesses) {
-          if (hook.command !== postCommand) continue;
-          const newPostPayload = hook.hookFn([ ...postPayload ]);
-          newArgs[3] = [
-            postHead,
-            [
-              postCommand,
-              ...newPostPayload,
-            ]
-          ];
-        }
+      if (!args[3][1] || !(args[3][1] instanceof Array) || typeof args[3][1][0] !== 'string') {
+        return target.apply(thisArg, args);
       }
+
+      const newArgs = args;
+      try {
+        const [ postHead, [ postCommand, ...postPayload ] ] = newArgs[3];
+
+        if (!!postPayload && postPayload.length > 0) {
+          for (const hook of HookApiPreProcesses) {
+            if (hook.command !== postCommand) continue;
+            const newPostPayload = hook.hookFn([ ...postPayload ]);
+            newArgs[3] = [
+              postHead,
+              [
+                postCommand,
+                ...newPostPayload,
+              ]
+            ];
+          }
+        }
+      } catch (__) { /* empty */ }
 
       return target.apply(thisArg, newArgs);
     },
