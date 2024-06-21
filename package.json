@@ -51,6 +51,6 @@
   },
   "dependencies": {
     "@types/pangu": "^4.0.2",
-    "pangu": "^4.0.7"
+    "pangu": "file:packages/pangu"
   }
 }
