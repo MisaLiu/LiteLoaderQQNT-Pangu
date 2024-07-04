@@ -17,7 +17,7 @@ export function doPanguTextProcessing(msgData: IQQNTMessageData): IQQNTMessageDa
     // message="@Bot /command"
     const AtCommandReg = /^\s?\//;
     if (
-      newMsgElements[1].textElement &&
+      (newMsgElements[1] && newMsgElements[1].textElement) &&
       (
         newMsgElements[0].textElement.atType !== 0 &&
         AtCommandReg.test(newMsgElements[1].textElement.content)
