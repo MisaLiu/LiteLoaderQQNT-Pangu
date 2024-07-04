@@ -5,6 +5,9 @@ import {
   IQQNTMessageElement,
 } from './types';
 
+const AtCommandReg = /^\s\//;
+const SkipCommandReg = /^!PanguSkip\s/;
+
 export function doPanguTextProcessing(msgData: IQQNTMessageData): IQQNTMessageData {
   const newMsgElements: IQQNTMessageElement[] = [ ...msgData.msgElements ];
 
@@ -15,7 +18,6 @@ export function doPanguTextProcessing(msgData: IQQNTMessageData): IQQNTMessageDa
       return msgData;
     }
     // message="@Bot /command"
-    const AtCommandReg = /^\s?\//;
     if (
       (newMsgElements[1] && newMsgElements[1].textElement) &&
       (
@@ -27,8 +29,12 @@ export function doPanguTextProcessing(msgData: IQQNTMessageData): IQQNTMessageDa
     }
 
     // --- Skip extra messages ---
-    if (newMsgElements[0].textElement.content.indexOf('!PanguSkip ') === 0) {
-      return msgData;
+    if (SkipCommandReg.test(newMsgElements[0].textElement.content)) {
+      newMsgElements[0].textElement.content = newMsgElements[0].textElement.content.replace(SkipCommandReg, '');
+      return {
+        ...msgData,
+        msgElements: newMsgElements,
+      };
     }
   }
 
