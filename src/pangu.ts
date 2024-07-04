@@ -25,6 +25,11 @@ export function doPanguTextProcessing(msgData: IQQNTMessageData): IQQNTMessageDa
     ) {
       return msgData;
     }
+
+    // --- Skip extra messages ---
+    if (newMsgElements[0].textElement.content.indexOf('!PanguSkip ') === 0) {
+      return msgData;
+    }
   }
 
   for (const msgElement of newMsgElements) {
