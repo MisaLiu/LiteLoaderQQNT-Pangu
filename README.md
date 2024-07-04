@@ -23,11 +23,15 @@
 
 由于本插件直接拦截并修改 QQNT 的发信通道，因此 **所有后于本插件初始化的插件自行发出的消息也受本插件影响**。如果您安装了太多会在后台自动发信的插件，请自行斟酌是否该使用本插件。
 
+## 参与开发
+
+现在本插件将使用 [自行修改的 pangu.js](https://github.com/MisaLiu/pangu.js)，如果您需要修改 pangu.js 的相关规则，可前往该仓库提交代码。
+
 ## 鸣谢
 
 * [LiteLoaderQQNT](https://github.com/LiteLoaderQQNT/LiteLoaderQQNT)
 * [LLOneBot](https://github.com/LLOneBot/LLOneBot)
-* [pangu.js](https://github.com/vinta/pangu.js)
+* [pangu.js](https://github.com/MisaLiu/pangu.js)
 
 ## License
 
