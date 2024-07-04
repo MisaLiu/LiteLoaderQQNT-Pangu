@@ -51,6 +51,6 @@
   },
   "dependencies": {
     "@types/pangu": "^4.0.2",
-    "pangu": "file:packages/pangu"
+    "pangu": "github:MisaLiu/pangu.js"
   }
 }

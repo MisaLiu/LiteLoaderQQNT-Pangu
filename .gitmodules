@@ -1,3 +1,0 @@
-[submodule "packages/pangu"]
-	path = packages/pangu
-	url = git@github.com:MisaLiu/pangu.js.git
