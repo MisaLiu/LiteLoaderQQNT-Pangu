@@ -3,18 +3,37 @@ import {
   EQQNTMessageElementType,
   IQQNTMessageData,
   IQQNTMessageElement,
-  IQQNTMessageElementText,
 } from './types';
 
 export function doPanguTextProcessing(msgData: IQQNTMessageData): IQQNTMessageData {
   const newMsgElements: IQQNTMessageElement[] = [ ...msgData.msgElements ];
 
+  if (newMsgElements[0].textElement) {
+    // --- Skip bot commands ---
+    // message="/command"
+    if (newMsgElements[0].textElement.content.indexOf('/') === 0) {
+      return msgData;
+    }
+    // message="@Bot /command"
+    const AtCommandReg = /^\s?\//;
+    if (
+      newMsgElements[1].textElement &&
+      (
+        newMsgElements[0].textElement.atType !== 0 &&
+        AtCommandReg.test(newMsgElements[1].textElement.content)
+      )
+    ) {
+      return msgData;
+    }
+  }
+
   for (const msgElement of newMsgElements) {
     if (msgElement.elementType !== EQQNTMessageElementType.TEXT) continue;
-    if ((msgElement as IQQNTMessageElementText).textElement.atType !== 0) continue;
+    if (!msgElement.textElement) continue;
+    if (msgElement.textElement.atType !== 0) continue;
 
-    const { content } = (msgElement as IQQNTMessageElementText).textElement;
-    (msgElement as IQQNTMessageElementText).textElement.content = PanguSpacing(content);
+    const { content } = msgElement.textElement;
+    msgElement.textElement.content = PanguSpacing(content);
   }
 
   return {

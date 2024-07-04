@@ -50,15 +50,13 @@ export interface IQQNTMessagePeer {
 export interface IQQNTMessageElement {
   elementType: EQQNTMessageElementType,
   elementId: string,
+  textElement?: IQQNTMessageSubElementText,
 }
 
-export interface IQQNTMessageElementText extends IQQNTMessageElement {
-  elementType: EQQNTMessageElementType.TEXT,
-  textElement: {
-    content: string,
-    atType: number, // 0=纯文本消息
-    atUid: string,
-    atTinyId: string,
-    atNtUid: string,
-  }
+export interface IQQNTMessageSubElementText {
+  content: string,
+  atType: number, // 0=纯文本消息
+  atUid: string,
+  atTinyId: string,
+  atNtUid: string,
 }
