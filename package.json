@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "@types/pangu": "^4.0.2",
-    "pangu": "github:MisaLiu/pangu.js"
+    "pangu": "github:MisaLiu/pangu.js",
+    "vite": "5.0.0"
   }
 }
